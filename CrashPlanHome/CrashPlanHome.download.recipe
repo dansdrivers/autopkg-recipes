@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads Code42 CrashPlan Home Version Installer for Mac</string>
+	<key>Identifier</key>
+	<string>com.github.dansdrivers.download.CrashPlanHome</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>CrashPlan</string>
+		<key>CHECK_PAGE</key>
+		<string>https://support.crashplan.com/Release_Notes</string>
+		<key>RE_PATTERN</key>
+		<string>.*/Release_Notes/\d\.\d&quot; rel=&quot;internal&quot;>(\d\.\d\.\d)&lt;/a*.</string>
+		<key>DOWNLOAD_URI</key>
+		<string>https://download.code42.com/installs/mac/install/CrashPlan/CrashPlan</string>
+	</dict>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Processor</key>
+			<string>CURLTextSearcher</string>
+			<key>Arguments</key>
+			<dict>
+				<key>url</key>
+				<string>%CHECK_PAGE%</string>
+				<key>result_output_var_name</key>
+				<string>RE_VERSION_NUMBER</string>
+				<key>re_pattern</key>
+				<string>%RE_PATTERN%</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+			<key>Arguments</key>
+			<dict>
+				<key>url</key>
+				<string>%DOWNLOAD_URI%_%RE_VERSION_NUMBER%_Mac.dmg</string>
+				<key>filename</key>
+				<string>CrashPlan.dmg</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>input_path</key>
+				<string>%RECIPE_CACHE_DIR%/downloads/CrashPlan.dmg/Install CrashPlan.pkg</string>
+				<key>expected_authority_names</key>
+				<array>
+					<string>Developer ID Installer: Code 42 Software</string>
+					<string>Developer ID Certification Authority</string>
+					<string>Apple Root CA</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
