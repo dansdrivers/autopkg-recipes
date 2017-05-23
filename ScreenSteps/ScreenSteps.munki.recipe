@@ -39,23 +39,6 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>faux_root</key>
-				<string>%RECIPE_CACHE_DIR%/pkgroot</string>
-				<key>installs_item_paths</key>
-				<array>
-					<string>/Applications/ScreenSteps.app</string>
-				</array>
-			</dict>
-			<key>Processor</key>
-			<string>MunkiInstallsItemsCreator</string>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>MunkiPkginfoMerger</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
 				<key>input_plist_path</key>
 				<string>%RECIPE_CACHE_DIR%/Downloads/ScreenSteps.dmg/ScreenSteps.app/Contents/Info.plist</string>
 			</dict>
@@ -79,7 +62,9 @@
 			<dict>
 				<key>pkg_path</key>
 				<string>%RECIPE_CACHE_DIR%/downloads/ScreenSteps.dmg</string>
-				<key>repo_subdirectory</key>
+                <key>version_comparison_key</key>
+                <string>CFBundleVersion</string>
+                <key>repo_subdirectory</key>
 				<string>%MUNKI_REPO_SUBDIR%</string>
 			</dict>
 			<key>Processor</key>
