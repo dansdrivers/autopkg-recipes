@@ -37,6 +37,32 @@
 	<key>Process</key>
 	<array>
 		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>additional_pkginfo</key>
+				<dict>
+					<key>version</key>
+					<string>%MATCHED_VERSION%</string>
+				</dict>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+			<dict>
+					<key>Arguments</key>
+					<dict>
+							<key>pkg_path</key>
+							<string>%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg</string>
+							<key>repo_subdirectory</key>
+							<string>%MUNKI_REPO_SUBDIR%</string>
+					</dict>
+					<key>Processor</key>
+					<string>MunkiImporter</string>
+			</dict>
+	</array>
+	<!--
+		<array>
+		<dict>
 			<key>Processor</key>
 			<string>FlatPkgUnpacker</string>
 			<key>Arguments</key>
@@ -122,5 +148,6 @@
 			<string>MunkiImporter</string>
 		</dict>
 	</array>
+-->
 </dict>
 </plist>

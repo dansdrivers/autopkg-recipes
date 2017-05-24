@@ -8,6 +8,48 @@
 	<string>com.github.dansdrivers.download.CrashPlanHome</string>
 	<key>Input</key>
 	<dict>
+			<key>NAME</key>
+			<string>CrashPlan</string>
+			<key>SEARCH_URL</key>
+			<string>http://www.crashplan.com/shared/js/cp.download.js</string>
+			<key>SEARCH_PATTERN</key>
+			<string>cp.download.CPC_CLIENT_VERSION = \'(?P&lt;MATCHED_VERSION&gt;.*?)\';</string>
+			<key>DOWNLOAD_URL</key>
+			<string>https://download1.code42.com/installs/mac/install/CrashPlan/</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.9</string>
+	<key>Process</key>
+	<array>
+			<dict>
+					<key>Processor</key>
+					<string>URLTextSearcher</string>
+					<key>Arguments</key>
+					<dict>
+							<key>url</key>
+							<string>%SEARCH_URL%</string>
+							<key>re_pattern</key>
+							<string>%SEARCH_PATTERN%</string>
+					</dict>
+			</dict>
+			<dict>
+					<key>Processor</key>
+					<string>URLDownloader</string>
+					<key>Arguments</key>
+					<dict>
+							<key>url</key>
+							<string>%DOWNLOAD_URL%CrashPlan_%MATCHED_VERSION%_Mac.dmg</string>
+							<key>filename</key>
+							<string>%NAME%.dmg</string>
+					</dict>
+			</dict>
+			<dict>
+					<key>Processor</key>
+					<string>EndOfCheckPhase</string>
+			</dict>
+	</array>
+<!--
+	<dict>
 		<key>NAME</key>
 		<string>CrashPlan</string>
 		<key>CHECK_PAGE</key>
@@ -63,5 +105,6 @@
 			</dict>
 		</dict>
 	</array>
+-->
 </dict>
 </plist>
