@@ -33,6 +33,17 @@
 			<key>unattended_install</key>
 			<true/>
 		</dict>
+		<key>preinstall_script</key>
+		<string>#!/bin/sh
+if /bin/launchctl list | /usr/bin/grep -q crashplan; then
+	if ! /bin/launchctl stop com.crashplan.engine ; then
+		echo "Stopping Crashplan engine failed."
+	fi
+	if ! /bin/launchctl unload /Library/LaunchDaemons/com.crashplan.engine.plist ; then
+		echo "Unloading CrashPlan engine failed."
+	fi
+fi
+	</string>
 	</dict>
 	<key>Process</key>
 	<array>
