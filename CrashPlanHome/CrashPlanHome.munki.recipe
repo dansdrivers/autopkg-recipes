@@ -24,14 +24,20 @@
 			<string>Systems</string>
 			<key>description</key>
 			<string>Silently and continuously back up all distributed end-user data for complete visibility and control on a single, secure platform.</string>
-			<key>display_name</key>
-			<string>%NAME%</string>
 			<key>developer</key>
 			<string>Code42</string>
+			<key>display_name</key>
+			<string>%NAME%</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>unattended_install</key>
 			<true/>
+			<key>installer_environment</key>
+			<dict>
+
+				<key>USER</key>
+				<string>%CURRENT_CONSOLE_USER%</string>
+			</dict>
 		</dict>
 		<key>preinstall_script</key>
 		<string>#!/bin/sh
