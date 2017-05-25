@@ -34,9 +34,8 @@
 			<true/>
 			<key>installer_environment</key>
 			<dict>
-
 				<key>USER</key>
-				<string>%CURRENT_CONSOLE_USER%</string>
+				<string>CURRENT_CONSOLE_USER</string>
 			</dict>
 		</dict>
 		<key>preinstall_script</key>
